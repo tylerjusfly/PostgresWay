@@ -3,18 +3,12 @@ export interface User {
   pass: string;
 }
 
-// export interface createdUser {
-//   message: string;
-//   users: [
-//     {
-//       id: string;
-//       username: string;
-//       pass: string;
-//       created_at: Date;
-//     },
-//   ];
-// }
-
 export interface IRoom {
   topic: string;
+}
+
+export interface IComment {
+  roomName: string;
+  postId: string;
+  comment: string;
 }

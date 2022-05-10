@@ -4,4 +4,5 @@ const apiRoutes = "/api";
 export const ROUTES = {
   INDEX: `${apiRoutes}/`,
   ROOM: `${apiRoutes}/rooms`,
+  POST: `${apiRoutes}/posts`,
 };

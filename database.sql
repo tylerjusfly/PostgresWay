@@ -13,27 +13,12 @@ create table rooms (
 
 CREATE INDEX room_topic ON rooms(topic);
 
--- create table posts(
--- 	postid BIGSERIAL PRIMARY KEY,
--- 	subject TEXT NOT NULL,
--- 	body TEXT NOT NULL,
--- 	roomid INT,
--- 	comments TEXT [],
--- 	CONSTRAINT fk_room_post
--- 		FOREIGN KEY(roomid)
--- 			REFERENCES rooms(roomid)
--- 			ON DELETE CASCADE,
--- 	CONSTRAINT fk_comments
--- 		FOREIGN KEY(comments)
--- 			REFERENCES comments(body)
--- 			ON DELETE CASCADE
--- );
 create table posts(
 	postid BIGSERIAL PRIMARY KEY,
 	subject TEXT NOT NULL,
 	body TEXT NOT NULL,
 	roomid INT,
-	comments TEXT [] REFERENCES comments(body),
+	comments TEXT [],
 	CONSTRAINT fk_room_post
 		FOREIGN KEY(roomid)
 			REFERENCES rooms(roomid)
@@ -44,5 +29,10 @@ create table posts(
 create table comments (
 	commentid BIGSERIAL PRIMARY KEY,
 	body TEXT NOT NULL,
-	created_at TIMESTAMPTZ DEFAULT Now()
-)
+	postid INT,
+	created_at TIMESTAMPTZ DEFAULT Now(),
+	CONSTRAINT fk_post
+		FOREIGN KEY(postid)
+			REFERENCES posts(postid)
+			ON DELETE CASCADE
+);
