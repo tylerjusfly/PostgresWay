@@ -5,6 +5,7 @@ import { ROUTES } from "./utils/constants";
 
 // Importing routes
 import indexRouter from "./routes/index";
+import roomRouter from "./routes/room";
 
 // Setting app to type of express application
 const app: Application = express();
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // importing routs
 app.use(ROUTES.INDEX, indexRouter);
+app.use(ROUTES.ROOM, roomRouter);
 
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   res.status(err.status || 500);
